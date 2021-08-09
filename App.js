@@ -1,74 +1,65 @@
-import React from 'react';
-import { Text, View, TextInput, ScrollView, Image } from 'react-native';
-import { Platform, StyleSheet,SafeAreaView } from 'react-native';
-import {Button, Icon, InputItem, TabBar} from "@ant-design/react-native";
+import * as React from 'react';
+import { View, Text, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from './components/Login'
+// import Fetchdata from './components/fetchdata';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    ...Platform.select({
-      ios: {
-        backgroundColor: 'red'
-      },
-      android: {
-        backgroundColor: 'green'
-      },
-      default: {
-        // other platforms, web for example
-        backgroundColor: 'blue'
-      }
-    })
-  }
-});
-const App = () => {
+// function Login({ navigation }) {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Button
+//         title="Fetchdata"
+//         onPress={() => navigation.navigate('Fetchdata')}
+//       />
+//       <Button
+//         title="Login"
+//         onPress={() => navigation.replace('Home')}
+//       />
+//     </View>
+//   );
+// }
+
+// function HomeScreen({ navigation }) {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text></Text>
+//       <Button
+//         title="Details"
+//         onPress={() => navigation.navigate('Details')}
+//       />
+//     </View>
+//   );
+// }
+
+// function DetailsScreen() {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Button
+//         title="Logout"
+//         onPress={() => navigation.replace('Login')}
+//       />
+//       <Button
+//         title="Goback"
+//         onPress={() => navigation.goBack()}
+//       />
+//     </View>
+
+//   );
+// }
+
+const Stack = createNativeStackNavigator();
+function App() {
   return (
-
-      <View>
-        <TabBar styles={styles.container}
-            unselectedTintColor="#949494"
-            tintColor="#33A3F4"
-            barTintColor="#f5f5f5"
-        >
-          <TabBar.Item
-              icon={<Icon name="ordered-list" />}
-              title="Home"
-          >
-          </TabBar.Item>
-          <TabBar.Item
-              icon={<Icon name="ordered-list" />}
-              title="Login"
-          >
-          </TabBar.Item>
-          <TabBar.Item
-              icon={<Icon name="like" />}
-              title="Friend"
-          >
-          </TabBar.Item>
-          <TabBar.Item
-              icon={<Icon name="user" />}
-              title="My App"
-          >
-          </TabBar.Item>
-        </TabBar>
-        <Text style={{marginTop: 100, textAlign: "center",fontSize: 30}}>Login</Text>
-      <SafeAreaView>
-        <InputItem style={{marginTop: 20}}
-            placeholder="User Name"
-                   type="name"
-        />
-        <InputItem style={{marginTop: 20}}
-            placeholder="Email"
-                   type="email"
-        />
-        <InputItem
-            style={{marginTop: 20}}
-            type="password"
-            placeholder="Password"
-        />
-        <Button type="submit" style={{marginTop: 20}} type={"primary"}>Login</Button>
-      </SafeAreaView>
-      </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login} />
+        {/* <Stack.Screen name="Fetchdata" component={Fetchdata} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} /> */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
 export default App;
